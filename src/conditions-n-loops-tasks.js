@@ -67,8 +67,14 @@ function getMaxNumber(a, b, c) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
-function canQueenCaptureKing(/* queen, king */) {
-  throw new Error('Not implemented');
+function canQueenCaptureKing(queen, king) {
+  if (king.x === queen.x || king.y === queen.y) {
+    return true;
+  }
+  if (Math.abs(king.x - queen.x) === Math.abs(king.y - queen.y)) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -258,8 +264,15 @@ function getSpiralMatrix(/* size */) {
  *    [7, 8, 9]         [9, 6, 3]
  *  ]                 ]
  */
-function rotateMatrix(/* matrix */) {
-  throw new Error('Not implemented');
+function rotateMatrix(matrix) {
+  const newArr1 = JSON.parse(JSON.stringify(matrix));
+  const counterX = matrix.length - 1;
+  for (let i = 0; i < matrix.length; i += 1) {
+    for (let u = 0; u < matrix.length; u += 1) {
+      newArr1[i][u] = matrix[counterX - u][i];
+    }
+  }
+  return newArr1;
 }
 
 /**
@@ -276,8 +289,18 @@ function rotateMatrix(/* matrix */) {
  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
-function sortByAsc(/* arr */) {
-  throw new Error('Not implemented');
+function sortByAsc(arr) {
+  const newArr = arr;
+  for (let i = 0; i < newArr.length; i += 1) {
+    let minDigit = i;
+    for (let u = i + 1; u < newArr.length; u += 1) {
+      if (newArr[minDigit] > newArr[u]) {
+        minDigit = u;
+      }
+    }
+    [newArr[i], newArr[minDigit]] = [newArr[minDigit], newArr[i]];
+  }
+  return newArr;
 }
 
 /**
